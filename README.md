@@ -1,31 +1,7 @@
-# HW
-def linearSearch( lst, key ):
-    """ Search for key in unsorted list lst.  Note that
-        the index + 1 is also the number of probes. """
-    for i in range( len(lst) ):
-        if key == lst[i]:
-            return i
-    return -1
+# Homework 10
+## Due Date: April 16,2021
+### Comparing Linear and Binary Search
 
-def binarySearch( lst, key ):
-    """ Search for key in sorted list lst. Return
-        a pair containing the index (or -low - 1)
-        and a count of number of probes. """
-    count = 0
-    low = 0
-    high = len(lst) - 1
-    while (high >= low):
-        count += 1
-        mid = (low + high) // 2
-        if key < lst[mid]:
-            high = mid - 1
-        elif key == lst[mid]:
-            return (mid, count)
-        else:
-            low = mid + 1
-    # Search failed
-    return (-low - 1, count)
+* Instructions and other "text" file may be found in the Instruction_Etc folder
+* Michael's contributions will be in the folder named Reese
 
-
-print("Linear Search:")
-print

@@ -1,1 +1,123 @@
-This is some text
+
+<!-- saved from url=(0057)https://www.cs.utexas.edu/~byoung/cs303e/weekly-hw10.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title> Programming Assignment 10</title>
+</head>
+
+<body>
+<h1> CS303E Homework 10</h1>
+<h2> Instructor: Dr. Bill Young<br>
+    Due Date: April 16, 2021 at 11:59pm</h2>
+
+<h3> Comparing Linear and Binary Search </h3>
+
+As in Project2, for this assignment you'll be building on code that
+already exists, including the linear and binary searching
+implementations from the slides or the book.  There is no reason to
+re-code those, but you should make sure that you understand them.<p>
+
+    Your task is to compare the performance of linear and binary search.
+    "Comparing" means seeing on average how many probes (comparisons) are
+    made as you search a list.  For linear search, it should be
+    approximately half the length of the list, if the item is present, and
+    the entire length of the list, if the item is not present.  For binary
+    search, it should be approximately the logarithm base 2 of the length
+    of the list, whether the item is present or not.  You will be
+    conducting some experiments to see whether these estimates are
+    correct. <i>Note that in these experiments, the value searched will
+    always be in the list because of the way we set up the problem.</i></p><p>
+
+    Below is some slightly modified code for Linear Search and Binary
+    Search:
+</p><pre>def linearSearch( lst, key ):
+    """ Search for key in unsorted list lst.  Note that
+        the index + 1 is also the number of probes. """
+    for i in range( len(lst) ):
+        if key == lst[i]:
+            return i
+    return -1
+
+def binarySearch( lst, key ):
+    """ Search for key in sorted list lst. Return
+        a pair containing the index (or -low - 1)
+        and a count of number of probes. """
+    count = 0
+    low = 0
+    high = len(lst) - 1
+    while (high &gt;= low):
+        count += 1
+        mid = (low + high) // 2
+        if key &lt; lst[mid]:
+            high = mid - 1
+        elif key == lst[mid]:
+            return (mid, count)
+        else:
+            low = mid + 1
+    # Search failed
+    return (-low - 1, count)
+</pre>
+Notice that the number of probes for linear search is the index
+returned plus 1.  I.e., if you found the item at location 423, then
+you've looked at 424 items.   For binary search, you have to keep
+track of the number of probes.  I've modified the binarySearch code to
+return a tuple including the index and the count.<p>
+
+    Your assignment has two parts.  Part 1 is to generate a list of the
+    values from 0 to 999, shuffle the list (using the random.shuffle
+    method) and then perform linear search n times on random values
+    selected in the range 0 to 999.  Keep track of the number of probes
+    for each search and find the average over all n experiments.  Be sure
+    to reset the counter for each experiment.  You'll do this for n equal
+    to each of the following: 10, 100, 1000, 10000, 100000.  Report those
+    averages.  (Note that the search should always succeed.)  Ideally, the
+    bigger the value of n, the closer you should get to 500.  But there
+    may be reasons why that doesn't happen; e.g., the selection of random
+    values may not be truly random or the shuffle may not be perfect.  You
+    don't have to round your answers.</p><p>
+
+    For Part 2, you'll do a similar experiment for binary search.  For
+    this, you'll need a sorted list; generate the list of values from 0 to
+    999 (i.e., [0, 1, 2, ..., 999]).  Perform binary search 1000 times on
+    random values selected in the range 0 to 999.  Average the number of
+    probes per search.  It should be close to the logarithm (base 2) of
+    1000.  Print out the average and the difference between the log base 2
+    of 1000 and your average.  You do not need to round any of your
+    answers.</p><p>
+
+    For example, on one run of my code I printed the following:
+</p><pre>Linear search:
+  Tests: 10       Average probes: 512.1
+  Tests: 100      Average probes: 487.86
+  Tests: 1000     Average probes: 498.379
+  Tests: 10000    Average probes: 498.8417
+  Tests: 100000   Average probes: 500.59694
+Binary search:
+  Average number of probes: 8.949
+  Differs from log2(1000) by: 1.0167842846620871
+</pre>
+Your output should match this, except that your numbers will be different.<p>
+
+</p><h3>Turning in the Assignment:</h3>
+
+The program should be in a file named <tt>ComparingLinearBinarySearch.py</tt>.
+Submit the file via Canvas before the deadline shown at the top of
+this page.  Submit it to the assignment 10 the assignments sections by
+uploading your python file.<p>
+
+    Your file must compile and run before submission.  It must also
+    contain a header with the following format:</p><p>
+
+</p><pre># File: ComparingLinearBinarySearch.py
+# Student:
+# UT EID:
+# Course Name: CS303E
+#
+# Date Created:
+# Date Last Modified:
+# Description of Program:
+</pre>
+
+
+
+
+</body></html>

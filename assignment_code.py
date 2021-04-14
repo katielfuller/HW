@@ -46,4 +46,19 @@ print(f'To find the number {num2find} in the list took {probes_linear} iteration
 
 tooFind = keys2find(10)
 print(f'The numbers that will be looked for are {tooFind}')
+#can I do something like this?
+numbers = list(range(1000))
+random.shuffle(numbers)
+count1 = 0
+count2 = 0
+for i in range(1, 10):
+    (count1 += linearSearch(numbers)) / 10
+for i in range(1, 100):
+    (count2 += linearSearch(numbers)) / 100
+for i in range(1, 1000):
+    (count1 += linearSearch(numbers)) / 1000
+for i in range(1, 10000):
+    (count2 += linearSearch(numbers)) / 10000
+for i in range(1, 100000):
+    (count2 += linearSearch(numbers)) / 100000
 

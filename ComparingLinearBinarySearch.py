@@ -1,3 +1,12 @@
+# File: ComparingLinearBinarySearch.py
+# Student:
+# UT EID:
+# Course Name: CS303E
+#
+# Date Created:
+# Date Last Modified:
+# Description of Program:
+
 def linearSearch( lst, key ):
     """
     Search for key in unsorted list lst.  Note that
@@ -48,17 +57,35 @@ tooFind = keys2find(10)
 print(f'The numbers that will be looked for are {tooFind}')
 #can I do something like this?
 numbers = list(range(1000))
+print(f'Your numbers before the shuffle are {numbers}')
 random.shuffle(numbers)
+print(f'Your numbers after the shuffle are {numbers}')
 count1 = 0
 count2 = 0
-for i in range(1, 10):
-    (count1 += linearSearch(numbers)) / 10
-for i in range(1, 100):
-    (count2 += linearSearch(numbers)) / 100
-for i in range(1, 1000):
-    (count1 += linearSearch(numbers)) / 1000
-for i in range(1, 10000):
-    (count2 += linearSearch(numbers)) / 10000
-for i in range(1, 100000):
-    (count2 += linearSearch(numbers)) / 100000
+
+# My first thoughts.  Do you see how nearly the same code is repeated on multiple lines.
+# One should try to avoid this.  When you have something like this it is probably a good idea to
+# turn it into some sort of method (or at least a loop)
+# I also noticed that you code did not run.  Use print statements to ensure you code is running
+# Make notes in your code about what the variable is and what you are using it for
+
+# Create a list that represent the five trial sizes that are expected to be evaluated.
+# The first trial will search for 10 numbers and the second trial will search for 100, etc
+tests = [10,  100, 1000, 10000, 100000]
+for test in tests:
+    print(f'Run this trial with {test} searches being performed')
+
+# A note about what you are doing here.  Note that in you calling of the linearSearch method you rae passing just one
+# variable "numbers"
+# But the method requires two inputs   (linearSearch( lst, key ):
+#for i in range(1, 10):
+#    (count1 += linearSearch(numbers)) / 10
+#for i in range(1, 100):
+#    (count2 += linearSearch(numbers)) / 100
+#for i in range(1, 1000):
+#    (count1 += linearSearch(numbers)) / 1000
+#for i in range(1, 10000):
+#    (count2 += linearSearch(numbers)) / 10000
+#for i in range(1, 100000):
+#    (count2 += linearSearch(numbers)) / 100000
 

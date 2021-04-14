@@ -1,0 +1,89 @@
+import random
+from math import log2
+def linearSearch( lst, key ):
+    """ Search for key in unsorted list lst.  Note that
+        the index + 1 is also the number of probes. """
+    for i in range( len(lst) ):
+        if key == lst[i]:
+            return i
+    return -1
+
+def binarySearch( lst, key ):
+    """ Search for key in sorted list lst. Return
+        a pair containing the index (or -low - 1)
+        and a count of number of probes. """
+    count = 0
+    low = 0
+    high = len(lst) - 1
+    while (high >= low):
+        count += 1
+        mid = (low + high) // 2
+        if key < lst[mid]:
+            high = mid - 1
+        elif key == lst[mid]:
+            return (mid, count)
+        else:
+            low = mid + 1
+    # Search failed
+    return (- low - 1 , count)
+
+
+
+
+
+def Search():
+	
+	numbers = list(range(1000))
+	random.shuffle(numbers)
+	num2find = random.randint(0,999)
+
+	
+	
+	count1 = 0
+	count2 = 0
+	count3 = 0
+	count4 = 0
+	count5 = 0
+	count6 = 0
+
+	for i in range(10):
+		
+		count1 = count1 + linearSearch(numbers, random.randint(0,999)) 
+	average1 = count1 / 10 
+
+	for i in range(100):
+
+		count2 = count2 + linearSearch(numbers, random.randint(0,999))  
+	average2 = count2 / 100
+
+	for i in range(1000):
+		
+		count3 = count3 + linearSearch(numbers, random.randint(0,999))
+		count6 = count6 + binarySearch(list(range(1000)), random.randint(0,999))[1]
+	average3 = count3 / 1000	
+	average6 = count6 / 1000
+
+	for i in range(10000):
+
+		count4 = count4 + linearSearch(numbers, random.randint(0,999)) 
+	average4 = count4 / 10000
+
+	for i in range(100000):
+
+		count5 = count5 + linearSearch(numbers, random.randint(0,999)) 
+	average5 = count5 / 100000
+
+	difference = log2(1000) - average6
+
+	
+	print("Linear Search:")
+	print(f"  Tests: 10       Average Probes: {average1}")
+	print(f"  Tests: 100      Average Probes: {average2}")
+	print(f"  Tests: 1000     Average Probes: {average3}")
+	print(f"  Tests: 10000    Average Probes: {average4}")
+	print(f"  Tests: 100000   Average Probes: {average5}")
+	print("Binary Search:")
+	print(f"  Average number of probes: {average6} ")
+	print(f"  Differs from log2(1000) by: {difference}")
+
+Search()
